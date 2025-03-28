@@ -1,9 +1,5 @@
 package com.cryptory.be.post.service;
 
-import com.cryptory.be.coin.domain.Coin;
-import com.cryptory.be.coin.exception.CoinErrorCode;
-import com.cryptory.be.coin.exception.CoinException;
-import com.cryptory.be.coin.repository.CoinRepository;
 import com.cryptory.be.global.util.DateFormat;
 import com.cryptory.be.global.util.FileUtils;
 import com.cryptory.be.post.domain.Post;
@@ -37,7 +33,6 @@ public class PostService {
 
     private final UserRepository userRepository;
     private final PostRepository postRepository;
-    private final CoinRepository coinRepository;
     private final PostFileRepository postFileRepository;
     private final FileUtils fileUtils;
 
@@ -67,14 +62,11 @@ public class PostService {
         User user = userRepository.findByUserId(userId)
                 .orElseThrow(() -> new UserException(UserErrorCode.NOT_EXIST_USER));
 
-        Coin coin = coinRepository.findById(coinId)
-                .orElseThrow(() -> new CoinException(CoinErrorCode.COIN_DATA_MISSING));
-
         Post post = postRepository.save(Post.builder()
                 .title(createPostDto.getTitle())
                 .body(createPostDto.getBody())
                 .user(user)
-                .coin(coin)
+                .coinId(coinId)
                 .build());
 
         // 파일이 존재하는 경우

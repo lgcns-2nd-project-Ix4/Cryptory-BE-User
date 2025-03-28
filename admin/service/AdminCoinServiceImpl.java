@@ -2,9 +2,6 @@ package com.cryptory.be.admin.service;
 
 import com.cryptory.be.admin.dto.coin.CoinDetailResponseDto;
 import com.cryptory.be.admin.dto.coin.CoinListResponseDto;
-import com.cryptory.be.coin.domain.Coin;
-import com.cryptory.be.coin.repository.CoinRepository;
-import com.cryptory.be.coin.repository.CoinSymbolRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

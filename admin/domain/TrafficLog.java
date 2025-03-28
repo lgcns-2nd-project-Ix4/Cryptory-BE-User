@@ -1,7 +1,5 @@
 package com.cryptory.be.admin.domain;
 
-import com.cryptory.be.coin.domain.Coin;
-import com.cryptory.be.user.domain.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -44,9 +42,7 @@ public class TrafficLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user; // null 허용 (비회원 방문)
+    private Long userId; // null 허용 (비회원 방문)
 
     private String ipAddress;
     private String userAgent;
@@ -55,8 +51,8 @@ public class TrafficLog {
 
 
     @Builder
-    public TrafficLog(User user, String ipAddress, String userAgent, String path, LocalDateTime timestamp){
-        this.user = user;
+    public TrafficLog(Long userId, String ipAddress, String userAgent, String path, LocalDateTime timestamp){
+        this.userId = userId;
         this.ipAddress = ipAddress;
         this.userAgent = userAgent;
         this.path = path;

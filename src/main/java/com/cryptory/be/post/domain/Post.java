@@ -1,6 +1,5 @@
 package com.cryptory.be.post.domain;
 
-import com.cryptory.be.coin.domain.Coin;
 import com.cryptory.be.global.entity.BaseTimeEntity;
 import com.cryptory.be.user.domain.User;
 import jakarta.persistence.*;
@@ -33,16 +32,14 @@ public class Post extends BaseTimeEntity {
 
     private boolean isDeleted = false;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "coin_id")
-    private Coin coin;
+    private Long coinId;
 
     @Builder
-    public Post(String title, String body, User user, Coin coin) {
+    public Post(String title, String body, User user, Long coinId) {
         this.title = title;
         this.body = body;
         this.user = user;
-        this.coin = coin;
+        this.coinId = coinId;
 
         this.viewCnt = 0L;
         this.likeCnt = 0L;
