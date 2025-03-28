@@ -1,0 +1,16 @@
+# Gradle 캐시 폴더 제외
+.gradle/
+build/
+out/
+
+# Git 파일
+.git/
+
+# IDE 파일
+.idea/
+.vscode/
+
+.DS_Store
+
+# 로그 파일
+*.log
