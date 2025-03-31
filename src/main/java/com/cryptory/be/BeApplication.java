@@ -13,10 +13,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 public class BeApplication {
 
 	public static void main(String[] args) {
-		Dotenv dotenv = Dotenv.load();
-
-		// .env에서 값을 가져와 시스템 환경 변수로 설정
-		dotenv.entries().forEach(entry -> System.setProperty(entry.getKey(), entry.getValue()));
+		String activeProfile = System.getenv("ENV_ACTIVE");
+		if (activeProfile == null || !activeProfile.equals("NO")) {
+			Dotenv dotenv = Dotenv.load();
+			dotenv.entries().forEach(entry -> System.setProperty(entry.getKey(), entry.getValue()));
+		}
 		SpringApplication.run(BeApplication.class, args);
 	}
 
