@@ -97,7 +97,7 @@ pipeline {
                                             	},
                                             	{
                                             		"name":"BASE_URL",
-                                            		"value": "http://ix4-fe-bucket.s3-website-ap-northeast-1.amazonaws.com/"
+                                            		"value": "${env.BASE_URL}"
                                             	},
                                             	{
                                             		"name":"CONFIG_SERVER_URL",
