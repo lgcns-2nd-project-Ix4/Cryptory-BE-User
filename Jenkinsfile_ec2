@@ -64,7 +64,7 @@ pipeline {
                                             docker pull $ECR_REPO:latest
                                             docker stop $IMAGE_NAME || true
                                             docker rm $IMAGE_NAME || true
-                                            docker run -d --name $IMAGE_NAME -p 8761:8761 \\
+                                            docker run -d --name $IMAGE_NAME -p 8081:8080 \\
                                                 -e CONFIG_SERVER_URL=$env.CONFIG_SERVER_URL \\
                                                 -e RABBITMQ_HOST=$env.RABBITMQ_HOST \\
                                                 -e RABBITMQ_PORT=$env.RABBITMQ_PORT \\
