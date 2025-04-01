@@ -97,7 +97,7 @@ pipeline {
                                             	},
                                             	{
                                             		"name":"BASE_URL",
-                                            		"value": "${env.BASE_URL}"
+                                            		"value": "https://d14rr0kqbsvt5f.cloudfront.net/"
                                             	},
                                             	{
                                             		"name":"CONFIG_SERVER_URL",
