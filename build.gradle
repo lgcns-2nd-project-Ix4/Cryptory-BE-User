@@ -32,9 +32,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-	//openfeign
-	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign
-	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.2.0'
+	// OpenFeign Starter
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+	// Eureka Client (서비스 검색을 위해 필요)
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+	// https://mvnrepository.com/artifact/org.mockito/mockito-core
+	testImplementation 'org.mockito:mockito-core:5.14.2'
 
 	// security
 	implementation 'org.springframework.boot:spring-boot-starter-security'

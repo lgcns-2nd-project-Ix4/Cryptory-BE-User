@@ -50,7 +50,8 @@ public class SecurityConfig {
             "/", "/admin/login",
             "/oauth2/callback",
             "/attach/files/**",
-            "/css/**", "/error"
+            "/css/**", "/error",
+            "/h2-console/**"
     };
 
     @Bean
@@ -78,6 +79,10 @@ public class SecurityConfig {
                         ).permitAll()
                         .anyRequest().authenticated())
 
+                // ---> H2 콘솔 프레임 허용 설정 추가 <---
+                .headers(headers -> headers
+                    .frameOptions(frameOptions -> frameOptions.sameOrigin()) // 같은 출처의 프레임 로드 허용
+                )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(jwtExceptionFilter, jwtFilter.getClass())
 

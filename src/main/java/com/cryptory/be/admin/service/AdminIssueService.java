@@ -31,10 +31,4 @@ public interface AdminIssueService {
 
     // 이슈 삭제
     void deleteIssues(List<Long> ids);
-
-    // 토론방 댓글 목록 조회
-    Page<IssueCommentListResponseDto> getIssueComments(Long issueId, int page, int size);
-
-    // 토론방 댓글 삭제
-    void deleteIssueComment(Long commentId);
 }

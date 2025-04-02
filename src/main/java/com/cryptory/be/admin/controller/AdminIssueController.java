@@ -35,7 +35,7 @@ public class AdminIssueController {
 
     private static final Logger log = LoggerFactory.getLogger(AdminIssueController.class);
     private final AdminIssueService adminIssueService;
-    private final AdminPostCommentService adminPostCommentService; // 게시글/댓글 삭제를 위한 서비스
+    private final AdminPostCommentService adminPostCommentService;
 
     // 특정 코인의 이슈 목록 조회
     @GetMapping("/coins/{coinId}/issues")
@@ -107,34 +107,6 @@ public class AdminIssueController {
         }
     }
 
-    // 이슈 코멘트 목록 조회
-    @GetMapping("/issues/{issueId}/comments")
-    public ResponseEntity<?> getIssueComments(
-            @PathVariable Long issueId,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        try {
-            Page<IssueCommentListResponseDto> comments = adminIssueService.getIssueComments(issueId, page, size);
-            return ResponseEntity.ok(comments);
-        } catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버에서 오류가 발생했습니다.");
-        }
-    }
-
-    // 이슈 코멘트 삭제 (논리적 삭제)
-    @PatchMapping("/issue-comments/{commentId}")
-    public ResponseEntity<?> deleteIssueComment(@PathVariable Long commentId, @RequestBody Map<String, Boolean> body) {
-        try{
-            if (body.containsKey("isDeleted") && body.get("isDeleted")) {
-                adminIssueService.deleteIssueComment(commentId);
-                return ResponseEntity.ok("성공적으로 삭제되었습니다.");
-            } else {
-                return ResponseEntity.badRequest().body("isDeleted 필드는 true여야 합니다.");
-            }
-        } catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버에서 오류가 발생했습니다.");
-        }
-    }
 
     // 게시글 삭제 (일괄, 논리적 삭제)
     @PatchMapping("/posts")
