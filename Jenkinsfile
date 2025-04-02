@@ -79,7 +79,8 @@ pipeline {
                                                 {
                                                     "containerPort": 8080,
                                                     "hostPort": 8080,
-                                                    "protocol": "tcp"
+                                                    "protocol": "tcp",
+                                                    "name": "be-user-container-8080-tcp"
                                                 }
                                             ],
                                             "logConfiguration": {
